@@ -46,7 +46,6 @@ const Game = ({gameShouldRun}) => {
         );
     }
 
-
     switch (gameState) {
         case PossibleGameStates.INTRO: return renderIntro();
         case PossibleGameStates.GAMEPLAY: return renderGameplay();
