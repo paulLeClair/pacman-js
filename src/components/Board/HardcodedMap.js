@@ -1,0 +1,43 @@
+// for now i'll just shove a hard-coded map in here
+import { TileType } from '../Tile/Tile'
+
+const HardcodedMap = [
+    [TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP],
+    [TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP],
+    [TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP],
+    [TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP],
+]
+
+export default HardcodedMap;

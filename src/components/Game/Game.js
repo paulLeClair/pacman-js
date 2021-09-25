@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import './Game.scss'
 
+import Board, { HardcodedMap } from '../Board/Board'
+
 // not sure how much of a point there is to doing this, but for now it's kool
 const gameClassName = "Game";
 
@@ -25,7 +27,7 @@ const Game = ({gameShouldRun}) => {
 
         return (
             <div className={gameClassName}>
-                
+                <Board map={HardcodedMap} />
             </div>
         );
     }
@@ -54,6 +56,7 @@ const Game = ({gameShouldRun}) => {
 
     // for now, any other result should just return an empty component i guess... shouldn't happen if the 
     // game is working properly
+        // i'm not sure what the best practice is for this kind of thing... should i just return null?
     return (
         <div className="Game">
             <p>Error!</p>
