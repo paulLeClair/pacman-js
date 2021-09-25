@@ -15,6 +15,8 @@ export const TileType = {
     GB_DOOR: 10
 };
 
+// to save space, we'll have to carefully manage orientations of tiles to rotate them according to their surroundings 
+
 const Tile = ({  }) => {
     // this will encode a single 
 

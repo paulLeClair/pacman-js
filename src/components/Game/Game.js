@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import './Game.scss'
 
-import Board, { HardcodedMap } from '../Board/Board'
+import Board from '../Board/Board'
+import HardcodedMap from '../Board/HardcodedMap'
 
 // not sure how much of a point there is to doing this, but for now it's kool
 const gameClassName = "Game";

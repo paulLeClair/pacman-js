@@ -40,4 +40,4 @@ const HardcodedMap = [
     [TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP],
 ]
 
-export default HardcodedMap;
+export default HardcodedMap
