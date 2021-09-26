@@ -15,9 +15,11 @@ export const TileType = {
     GB_DOOR: 10
 };
 
+export const TileSize = 12; // tile size in pixels, will probably need to be tweaked
+
 // to save space, we'll have to carefully manage orientations of tiles to rotate them according to their surroundings 
 
-const Tile = ({  }) => {
+const Tile = ({ orientation, xPos, yPos, type }) => {
     // this will encode a single 
 
     return (

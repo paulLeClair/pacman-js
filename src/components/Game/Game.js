@@ -5,9 +5,17 @@ import Board from '../Board/Board'
 import HardcodedMap from '../Board/HardcodedMap'
 
 // not sure how much of a point there is to doing this, but for now it's kool
-const gameClassName = "Game";
+const gameClassName = "game";
 
-const Game = ({gameShouldRun}) => {
+// i'll maintain a fundamental definition of orientations maybe
+export const Orientation = {
+    RIGHT: 0,
+    DOWN: 1,
+    LEFT: 2,
+    UP: 3,
+};
+
+const Game = ({ gameShouldRun }) => {
 
     // maybe i'll just try to have the game exist in a few possible states...
     const PossibleGameStates = {

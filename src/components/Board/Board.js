@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import './Board.scss'
-import Tile from '../Tile/Tile'
+import Tile, { TileSize } from '../Tile/Tile'
+import { computeTileImageOrientations } from './BoardUtils.js'
 
 // fundamentally, we need a way to specify the map itself in a convenient way
     // i could hardcode it here as an array of arrays potentially, but it would probably
@@ -18,18 +19,23 @@ const Board = ({ initialMap }) => {
     // maybe i should actually build the map using an effect that fires only after the first render
     useEffect(
         () => {
-            // build the actual grid of tiles that gameplay occurs in
-            setTileGrid(mapSpecification.map((row, x) => {
-                let key = "tile_";
-                return row.map((tile, y) => (
-                    
+            // compute orientations here maybe?
+            let tileOrientations = computeTileImageOrientations(mapSpecification);
+            let key = "tile_";
 
-                    <Tile key={key.concat(x, "_", y)}  />
-                ))
+            // build the actual grid of tiles that gameplay occurs in
+            setTileGrid(mapSpecification.map((row, x) => {    
+                return row.map((tileType, y) => {
+                    // compute position to pass to Tile ?
+                    let xpos = TileSize * x;
+                    let ypos = TileSize * y;
+
+                    return <Tile key={key.concat(x, "_", y)} type={tileType} orientation={tileOrientations[x][y]} xPos={xpos} yPos={ypos} />
+                })
             }))
         }, 
         []
-    )
+    ) // since the map should be static for now, hopefully it works to set everything up like this 
 
     
 
