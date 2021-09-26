@@ -34,7 +34,7 @@ const Tile = ({ orientation, xPos, yPos, type }) => {
     let tileImagePath = "../../assets/";
     switch (type) {
         case TileType.OFFMAP: {
-            tileImagePath += "offmap.jpg"
+            tileImagePath += "open.jpg" // they use the same picture for now
             break;
         }
 
