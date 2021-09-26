@@ -1,5 +1,12 @@
+img {
+    display: block;
+}
+
 .tile {
     position: absolute;
+    padding: 0;
+    margin: 0;
+    resize: none;
 }
 
 .orientation-right {

@@ -32,11 +32,12 @@ const Game = ({ gameShouldRun }) => {
     // gotta do some thinking before i continue
     
     const renderIntro = () => {
-        
-
+        let hardcodedMap = HardcodedMap;
+        console.log(hardcodedMap);
         return (
             <div className={gameClassName}>
-                <Board map={HardcodedMap} />
+                
+                <Board initialMap={hardcodedMap} />
             </div>
         );
     }

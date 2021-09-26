@@ -1,6 +1,7 @@
 import React from 'react'
 import './Tile.scss'
 import { Orientation } from '../Game/Game'
+import { open, boundaryEdge, boundaryInCorner, boundaryOutCorner, boundaryBump, innerEdge, innerCorner, ghostBoxCorner, ghostBoxDoor } from './TileImageImports'
 
 export const TileType = {
     OFFMAP: 0,
@@ -11,8 +12,8 @@ export const TileType = {
     BOUNDARY_BUMP: 5,
     INNER_EDGE: 6,
     INNER_CORNER: 7,
-    GB_CORNER: 9,
-    GB_DOOR: 10
+    GB_CORNER: 8,
+    GB_DOOR: 9
 };
 
 export const TileSize = 12; // tile size in pixels, will probably need to be tweaked
@@ -31,68 +32,68 @@ const Tile = ({ orientation, xPos, yPos, type }) => {
         case Orientation.UP: orientationClass = "orientation-up"; break;
     }
 
-    let tileImagePath = "../../assets/";
+    let tileImagePath;
     switch (type) {
         case TileType.OFFMAP: {
-            tileImagePath += "open.jpg" // they use the same picture for now
+            tileImagePath = open; // they use the same picture for now
             break;
         }
 
         case TileType.OPEN: {
-            tileImagePath += "open.jpg"
+            tileImagePath = open;
             break;
         }
 
         case TileType.BOUNDARY_EDGE: {
-            tileImagePath += "boundary-edge.jpg"
+            tileImagePath = boundaryEdge;
             break;
         }
 
         case TileType.BOUNDARY_INCORNER : {
-            tileImagePath += "boundary-incorner.jpg"
+            tileImagePath = boundaryInCorner;
             break;
         }
 
         case TileType.BOUNDARY_OUTCORNER: {
-            tileImagePath += "boundary-outcorner.jpg"
+            tileImagePath = boundaryOutCorner;
             break;
         }
 
         case TileType.BOUNDARY_BUMP: {
-            tileImagePath += "boundary-bump.jpg"
+            tileImagePath = boundaryBump;
             break;
         }
 
         case TileType.INNER_CORNER: {
-            tileImagePath += "inner-corner.jpg"
+            tileImagePath = innerCorner;
             break;
         }
 
         case TileType.INNER_EDGE: {
-            tileImagePath += "inner-edge.jpg"
+            tileImagePath = innerEdge;
             break;
         }
 
         case TileType.GB_CORNER : {
-            tileImagePath += "gb-corner.jpg"
+            tileImagePath = ghostBoxCorner;
             break;
         }
 
         case TileType.GB_DOOR : {
-            tileImagePath += "gb-door.jpg"
+            tileImagePath = ghostBoxDoor;
             break;
         }
     }
 
     // i'll set the position using an inline style variable
     const posStyles = {
-        left: toString(xPos) + "px",
-        top: toString(yPos) + "px",
+        top: `${xPos}px`,
+        left: `${yPos}px`,
     };
 
     return (
-        <div className="tile">
-            <img className={orientationClass} style={posStyles} src={tileImagePath} />
+        <div className={"tile " + orientationClass} style={posStyles} width={TileSize} height={TileSize}>
+            <img src={tileImagePath}  />
         </div>
     );
 }
