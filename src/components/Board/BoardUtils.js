@@ -25,10 +25,12 @@ const isUpperLeftCorner = (tileType, mapSpecification, x, y) => {
     }
 
     switch (tileType) {
-        case TileType.BOUNDARY_INCORNER: return (mapSpecification[x + 1][y + 1] === TileType.OFFMAP);
-        default:
-            return (mapSpecification[x + 1][y + 1] === TileType.OPEN);        
+        case TileType.BOUNDARY_INCORNER: 
+        case TileType.GB_CORNER:
+        case TileType.INNER_CORNER:
+            return (mapSpecification[x + 1][y + 1] === TileType.OFFMAP);
     }
+    return (mapSpecification[x + 1][y + 1] === TileType.OPEN);  
 }
 
 const isLowerRightCorner = (tileType, mapSpecification, x, y) => {
@@ -41,10 +43,13 @@ const isLowerRightCorner = (tileType, mapSpecification, x, y) => {
     }
 
     switch (tileType) {
-        case TileType.BOUNDARY_INCORNER: return (mapSpecification[x - 1][y + 1] === TileType.OFFMAP);
-        default:
-            return (mapSpecification[x - 1][y + 1] === TileType.OPEN);        
+        case TileType.BOUNDARY_INCORNER: 
+        case TileType.GB_CORNER:
+            return (mapSpecification[x - 1][y + 1] === TileType.OFFMAP);
+        case TileType.INNER_CORNER: break;
     }
+
+    return (mapSpecification[x - 1][y + 1] === TileType.OPEN);      
 }
 
 const isLowerLeftCorner = (tileType, mapSpecification, x, y) => {
@@ -57,10 +62,13 @@ const isLowerLeftCorner = (tileType, mapSpecification, x, y) => {
     }
 
     switch (tileType) {
-        case TileType.BOUNDARY_INCORNER: return (mapSpecification[x + 1][y - 1] === TileType.OFFMAP);
-        default:
-            return (mapSpecification[x + 1][y - 1] === TileType.OPEN);  
-    }    
+        case TileType.BOUNDARY_INCORNER: 
+        case TileType.GB_CORNER:
+            return (mapSpecification[x + 1][y - 1] === TileType.OFFMAP);  
+        case TileType.INNER_CORNER: break;
+    }
+
+    return (mapSpecification[x + 1][y - 1] === TileType.OPEN);
 }
 
 const isUpperRightCorner = (tileType, mapSpecification, x, y) => {
@@ -73,10 +81,15 @@ const isUpperRightCorner = (tileType, mapSpecification, x, y) => {
     }
 
     switch (tileType) {
-        case TileType.BOUNDARY_INCORNER: return (mapSpecification[x - 1][y - 1] === TileType.OFFMAP);
-        default:
-            return (mapSpecification[x - 1][y - 1] === TileType.OPEN);        
+        case TileType.BOUNDARY_INCORNER: 
+        case TileType.GB_CORNER:
+            return (mapSpecification[x - 1][y - 1] === TileType.OFFMAP);
+        case TileType.INNER_CORNER:
+            break;
+            
     }
+    
+    return (mapSpecification[x - 1][y - 1] === TileType.OPEN);  
 }
 
 export const computeTileImageOrientations = (mapSpecification) => {
