@@ -91,9 +91,11 @@ const Tile = ({ orientation, xPos, yPos, type }) => {
         left: `${yPos}px`,
     };
 
+    let classNameStr = "tile " + orientationClass + (type === TileType.BOUNDARY_BUMP && orientationClass === Orientation.LEFT) ? " boundary-bump-invert" : "";
+    
     return (
         <div className={"tile " + orientationClass} style={posStyles} width={TileSize} height={TileSize}>
-            <img src={tileImagePath}  />
+            <img  src={tileImagePath}  />
         </div>
     );
 }

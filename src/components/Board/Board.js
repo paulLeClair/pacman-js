@@ -37,8 +37,6 @@ const Board = ({ initialMap }) => {
         [mapSpecification] // this shouldn't change anyway
     ) // since the map should be static for now, hopefully it works to set everything up like this 
 
-    
-
     return (
         <div className="board">
             {tileGrid}

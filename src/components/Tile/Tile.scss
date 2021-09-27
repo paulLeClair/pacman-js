@@ -1,5 +1,5 @@
 img {
-    display: block;
+    display: block; // prevents the image divs being sized incorrectly
 }
 
 .tile {
@@ -25,3 +25,6 @@ img {
     transform: rotate(270deg);
 }
 
+img.boundary-bump-invert {
+    transform: scale
+}

@@ -36,7 +36,6 @@ const Game = ({ gameShouldRun }) => {
         console.log(hardcodedMap);
         return (
             <div className={gameClassName}>
-                
                 <Board initialMap={hardcodedMap} />
             </div>
         );
