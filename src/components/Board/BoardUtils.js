@@ -14,20 +14,53 @@ const isEdge = (tileType) => {
             || tileType === TileType.BOUNDARY_EDGE);
 }
 
-const isUpperLeftCorner = (tileType) => {
+const isUpperLeftCorner = (tileType, mapSpecification, x, y) => {
+    // maybe i'll try some simple rules first...
+    if (x + 1 >= mapSpecification.length) {
+        return false;       
+    }
 
+    if (y + 1 >= mapSpecification[x].length) {
+        return false;
+    }
+
+    return (mapSpecification[x + 1][y + 1] === TileType.OPEN);
 }
 
-const isUpperRightCorner = (tileType) => {
+const isLowerRightCorner = (tileType, mapSpecification, x, y) => {
+    if (x - 1 < 0) {
+        return false;
+    }
 
+    if (y + 1 > mapSpecification[x].length) {
+        return false;
+    }
+
+    return (mapSpecification[x - 1][y + 1] === TileType.OPEN);
 }
 
-const isLowerLeftCorner = (tileType) => {
+const isLowerLeftCorner = (tileType, mapSpecification, x, y) => {
+    if (x + 1 > mapSpecification.length) {
+        return false;
+    }
 
+    if (y - 1 < 0) {
+        return false;
+    }
+
+    return (mapSpecification[x + 1][y - 1] === TileType.OPEN);
 }
 
-const isLowerRightCorner = (tileType) => {
+const isUpperRightCorner = (tileType, mapSpecification, x, y) => {
+    if (x - 1 < 0) {
+        return false;
+    }
 
+    if (y - 1 < 0) {
+        return false;
+    }
+
+    return (mapSpecification[x - 1][y - 1] === TileType.OPEN);
 }
 
 export const computeTileImageOrientations = (mapSpecification) => {
@@ -46,17 +79,17 @@ export const computeTileImageOrientations = (mapSpecification) => {
 
             if (isCorner(tileType)) {
                 // in this case, we have to determine the orientation based on the type of corner
-                if (isUpperLeftCorner(tileType)) {
+                if (isUpperLeftCorner(tileType, mapSpecification, x, y)) {
                     return Orientation.RIGHT;
                 }
-                if (isUpperRightCorner(tileType)) {
-                    return Orientation.DOWN;
+                if (isLowerRightCorner(tileType, mapSpecification, x, y)) {
+                    return Orientation.UP;
                 }
-                if (isLowerRightCorner(tileType)) {
+                if (isUpperRightCorner(tileType, mapSpecification, x, y)) {
                     return Orientation.LEFT;
                 }
-                if (isLowerLeftCorner(tileType)) {
-                    return Orientation.UP;
+                if (isLowerLeftCorner(tileType, mapSpecification, x, y)) {
+                    return Orientation.DOWN;
                 }
             }
 
