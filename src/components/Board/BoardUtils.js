@@ -201,9 +201,7 @@ const isLowerRightCorner = (tileType, mapSpecification, x, y) => {
         }
         default:
             return (mapSpecification[x - 1][y - 1] === TileType.OPEN);
-    }
-
-    // return (mapSpecification[x - 1][y - 1] === TileType.OPEN || mapSpecification[x - 1][y - 1] === TileType.OFFMAP);      
+    }   
 }
 
 const isLowerLeftCorner = (tileType, mapSpecification, x, y) => {
@@ -263,10 +261,7 @@ const isLowerLeftCorner = (tileType, mapSpecification, x, y) => {
         default:
             return (mapSpecification[x - 1][y + 1] === TileType.OPEN);
     }
-
-    // return (mapSpecification[x + 1][y - 1] === TileType.OPEN || mapSpecification[x + 1][y - 1] === TileType.OFFMAP);
 }
-
 
 export const computeTileImageOrientations = (mapSpecification) => {
     return mapSpecification.map((row, x) => 
