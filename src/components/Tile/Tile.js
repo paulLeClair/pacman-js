@@ -1,7 +1,7 @@
 import React from 'react'
 import './Tile.scss'
 import { Orientation } from '../Game/Game'
-import { open, boundaryEdge, boundaryInCorner, boundaryOutCorner, boundaryBump, innerEdge, innerCorner, ghostBoxCorner, ghostBoxDoor } from './TileImageImports'
+import { open, boundaryEdge, boundaryInCorner, boundaryOutCorner, boundaryBumpLeft, boundaryBumpRight, innerEdge, innerCorner, ghostBoxCorner, ghostBoxDoor } from './TileImageImports'
 
 export const TileType = {
     OFFMAP: 0,
@@ -9,11 +9,12 @@ export const TileType = {
     BOUNDARY_EDGE: 2,
     BOUNDARY_INCORNER: 3,
     BOUNDARY_OUTCORNER: 4,
-    BOUNDARY_BUMP: 5,
-    INNER_EDGE: 6,
-    INNER_CORNER: 7,
-    GB_CORNER: 8,
-    GB_DOOR: 9
+    BOUNDARY_BUMP_LEFT: 5,
+    BOUNDARY_BUMP_RIGHT: 6,
+    INNER_EDGE: 7,
+    INNER_CORNER: 8,
+    GB_CORNER: 9,
+    GB_DOOR: 10
 };
 
 export const TileSize = 12; // tile size in pixels, will probably need to be tweaked
@@ -59,8 +60,13 @@ const Tile = ({ orientation, xPos, yPos, type }) => {
             break;
         }
 
-        case TileType.BOUNDARY_BUMP: {
-            tileImagePath = boundaryBump;
+        case TileType.BOUNDARY_BUMP_LEFT: {
+            tileImagePath = boundaryBumpLeft;
+            break;
+        }
+
+        case TileType.BOUNDARY_BUMP_RIGHT: {
+            tileImagePath = boundaryBumpRight;
             break;
         }
 

@@ -175,13 +175,12 @@ const isLowerRightCorner = (tileType, mapSpecification, x, y) => {
                     else {
                         return false;
                     }
-                    
                 }
 
                 if (leftNeighbor === TileType.INNER_CORNER) {
                     // in this case, we need the tile directly below to be open
                     if (x + 1 < mapSpecification.length) {
-                        let belowNeighbor = mapSpecification[x+1][y];
+                        let belowNeighbor = mapSpecification[x + 1][y];
                         return belowNeighbor === TileType.OPEN;
                     }
                     else {
@@ -189,8 +188,6 @@ const isLowerRightCorner = (tileType, mapSpecification, x, y) => {
                     }
                 }
 
-                // need to handle the last couple cases somehow....
-                
                 return true;
             }
             return false;
@@ -215,13 +212,10 @@ const isLowerLeftCorner = (tileType, mapSpecification, x, y) => {
 
     switch (tileType) {
         case TileType.INNER_CORNER: {
-
             let aboveNeighbor = mapSpecification[x - 1][y];
             let rightNeighbor = mapSpecification[x][y + 1];
 
             if (aboveNeighbor !== TileType.OPEN && rightNeighbor !== TileType.OPEN) {
-
-                // need to handle a couple specific cases still
 
                 if (aboveNeighbor === TileType.INNER_CORNER) {
                     if (y - 1 > 0) {
@@ -238,8 +232,6 @@ const isLowerLeftCorner = (tileType, mapSpecification, x, y) => {
                         return belowNeighbor === TileType.OPEN;
                     } 
                 }
-
-                // handle interior edge case
 
                 // maybe i'll try checking the below OR aboveright tiles are open, similarly to the upper left corner handler
                 if (x + 1 < mapSpecification.length) {
