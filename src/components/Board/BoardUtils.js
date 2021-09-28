@@ -203,7 +203,6 @@ const isUpperRightCorner = (tileType, mapSpecification, x, y) => {
         default: // boundary_outcorner
             return (mapSpecification[x + 1][y - 1] === TileType.OPEN);   
     }
-    
 }
 
 const isLowerRightCorner = (tileType, mapSpecification, x, y) => {
