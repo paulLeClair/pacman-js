@@ -18,6 +18,63 @@ const isEdge = (tileType) => {
             || tileType === TileType.BOUNDARY_EDGE);
 }
 
+const computeBoundaryBumpOrientation = (tileType, mapSpecification, x, y) => {
+    switch (tileType) {
+        case TileType.BOUNDARY_BUMP_LEFT: {
+            // check above neighbors
+            if (x - 1 > 0) {
+                // check above right
+                if (y + 1 < mapSpecification[x].length) {
+                    let aboveRightNeighbor = mapSpecification[x - 1][y + 1];
+                    if (aboveRightNeighbor === TileType.OPEN) {
+                        return Orientation.LEFT;
+                    }
+                }
+            }
+
+            // check below neighbors
+            if (x + 1 < mapSpecification.length) {
+                // check below right
+                if (y + 1 < mapSpecification[x].length) {
+                    let belowRightNeighbor = mapSpecification[x + 1][y + 1];
+                    if (belowRightNeighbor === TileType.OPEN) {
+                        return Orientation.UP;
+                    }
+                }
+            }
+
+            break;
+        }
+        default:
+            // check below neighbors
+            if (x + 1 < mapSpecification.length)  {
+                // check below right
+                if (y + 1 < mapSpecification[x].length) {
+                    let belowRightNeighbor = mapSpecification[x + 1][y + 1];
+                    if (belowRightNeighbor === TileType.OPEN) {
+                        return Orientation.RIGHT;
+                    }
+                }
+
+                // check below left
+                if (y - 1 > 0) {
+                    let belowLeftNeighbor = mapSpecification[x + 1][y - 1];
+                    if (belowLeftNeighbor === TileType.OPEN) {
+                        return Orientation.DOWN;
+                    }
+                }
+            }
+            
+            // check above-left neighbor neighbor
+            if (x - 1 > 0 && y - 1 > 0) {
+                let aboveLeftNeighbor = mapSpecification[x - 1][y - 1];
+                if (aboveLeftNeighbor === TileType.OPEN) {
+                    return Orientation.LEFT;
+                }
+            }
+    }
+}
+
 const isUpperLeftCorner = (tileType, mapSpecification, x, y) => {
     // maybe i'll try some simple rules first...
     if (x + 1 >= mapSpecification.length) {
@@ -268,6 +325,11 @@ export const computeTileImageOrientations = (mapSpecification) => {
             if (tileType === TileType.GB_DOOR) {
                 return Orientation.UP; // these should always be upward i think
             }
+            
+            if (tileType === TileType.BOUNDARY_BUMP_LEFT || tileType === TileType.BOUNDARY_BUMP_RIGHT) {
+                return computeBoundaryBumpOrientation(tileType, mapSpecification, x, y);
+            }
+
 
             if (isCorner(tileType)) {
                 // in this case, we have to determine the orientation based on the type of corner
