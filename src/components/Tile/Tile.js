@@ -19,8 +19,6 @@ export const TileType = {
 
 export const TileSize = 12; // tile size in pixels, will probably need to be tweaked
 
-// to save space, we'll have to carefully manage orientations of tiles to rotate them according to their surroundings 
-
 const Tile = ({ orientation, xPos, yPos, type }) => {
     // to orient each image, maybe i'll make 4 different possible CSS classes so that 
     // we just select the one based on the orientation?
@@ -97,8 +95,6 @@ const Tile = ({ orientation, xPos, yPos, type }) => {
         left: `${yPos}px`,
     };
 
-    let classNameStr = "tile " + orientationClass + (type === TileType.BOUNDARY_BUMP && orientationClass === Orientation.LEFT) ? " boundary-bump-invert" : "";
-    
     return (
         <div className={"tile " + orientationClass} style={posStyles} width={TileSize} height={TileSize}>
             <img  src={tileImagePath}  />
