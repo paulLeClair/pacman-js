@@ -1,3 +1,13 @@
-.game {
-    position: fixed; // hopefully this will provide a positioned ancestor for the rest of the components
+.game {    
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    border: green;
+}
+
+a {
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    color: blueviolet;
+    margin: 2em;
 }

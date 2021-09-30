@@ -97,7 +97,7 @@ const Tile = ({ orientation, xPos, yPos, type }) => {
 
     return (
         <div className={"tile " + orientationClass} style={posStyles} width={TileSize} height={TileSize}>
-            <img  src={tileImagePath}  />
+            <img  src={tileImagePath} />
         </div>
     );
 }

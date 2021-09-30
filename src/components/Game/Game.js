@@ -1,8 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import './Game.scss'
 
+import TitleBar from '../TitleBar/TitleBar'
+
 import Board from '../Board/Board'
 import HardcodedMap from '../Board/HardcodedMap'
+
+import Pacman from '../Pacman/Pacman'
 
 // not sure how much of a point there is to doing this, but for now it's kool
 const gameClassName = "game";
@@ -23,7 +27,7 @@ const Game = ({ gameShouldRun }) => {
         GAMEPLAY: 1,
         GAMEOVER: 2,
     };
-    const [gameState, setGameState] = useState(PossibleGameStates.INTRO);
+    const [gameState, setGameState] = useState(PossibleGameStates.GAMEPLAY);
 
 
     // i'll separate each game state into a separate function maybe...? not sure yet how best to organize it
@@ -32,11 +36,9 @@ const Game = ({ gameShouldRun }) => {
     // gotta do some thinking before i continue
     
     const renderIntro = () => {
-        let hardcodedMap = HardcodedMap;
-        console.log(hardcodedMap);
         return (
             <div className={gameClassName}>
-                <Board initialMap={hardcodedMap} />
+                <Board initialMap={HardcodedMap} />
             </div>
         );
     }
@@ -44,7 +46,10 @@ const Game = ({ gameShouldRun }) => {
     const renderGameplay = () => {
         return (
             <div className={gameClassName}> 
-                
+                <TitleBar />
+                <Board initialMap={HardcodedMap} />
+                <a href="http://github.com/paulLeClair">source code</a>
+                <Pacman mapSpecification={HardcodedMap} />
             </div>
         );
     }
@@ -67,7 +72,7 @@ const Game = ({ gameShouldRun }) => {
     // game is working properly
         // i'm not sure what the best practice is for this kind of thing... should i just return null?
     return (
-        <div className="Game">
+        <div className="game">
             <p>Error!</p>
         </div>
     );

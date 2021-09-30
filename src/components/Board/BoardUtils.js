@@ -12,7 +12,6 @@ const isCorner = (tileType) => (tileType === TileType.INNER_CORNER
                                 || tileType === TileType.BOUNDARY_INCORNER
                                 || tileType === TileType.GB_CORNER);
 
-
 const isEdge = (tileType) => {
     return (tileType === TileType.INNER_EDGE
             || tileType === TileType.BOUNDARY_EDGE);

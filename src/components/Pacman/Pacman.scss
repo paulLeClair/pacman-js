@@ -1,0 +1,36 @@
+img {
+    display: block;
+}
+
+// this doesn't seem optimal, but i'll just use the same rotation classnames for every class that needs it
+.orientation-right {
+    transform: rotate(0deg);
+}
+
+.orientation-down {
+    transform: rotate(90deg);
+}
+
+.orientation-left {
+    transform: rotate(180deg);
+}
+
+.orientation-up {
+    transform: rotate(270deg);
+}
+
+.pacman {
+    position: absolute;
+    padding: 0;
+    margin: 0;
+
+    // using TileSize === 12
+    height: 12px; 
+    width: 12px;
+}
+
+// i'll try and implement the pacman animations in this sheet
+
+@keyframes pacman-animation {
+    0% {}
+}
