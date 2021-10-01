@@ -48,8 +48,8 @@ const Game = ({ gameShouldRun }) => {
             <div className={gameClassName}> 
                 <TitleBar />
                 <Board initialMap={HardcodedMap} />
-                <a href="http://github.com/paulLeClair">source code</a>
                 <Pacman mapSpecification={HardcodedMap} />
+                <a href="http://github.com/paulLeClair/pacman-js">source code</a>
             </div>
         );
     }

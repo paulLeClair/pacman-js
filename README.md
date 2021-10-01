@@ -32,5 +32,7 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 
 ## Credits
 
+- All credit goes to Namco for the game design! I'm trying to use their original game as a specification for my own project here
+
 - Pacman sprites come from a sheet I found on Google, ripped by `SUPASTARFOX`! Big thanks to them for providing these great sprites :)
 

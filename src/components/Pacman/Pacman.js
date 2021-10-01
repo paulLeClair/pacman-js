@@ -29,7 +29,7 @@ const Pacman = ({ mapSpecification }) => { // not sure what kind of props i'll n
 
     // set state and initialize the positions?
     useEffect( () => {
-
+        
     }, 
     [pixelPos, gridPos]);
 
