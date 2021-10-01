@@ -1,5 +1,19 @@
 img {
     display: block;
+
+    // using TileSize === 12
+    height: 12px; 
+    width: 12px;
+
+}
+
+.pacman-movement {
+    animation: pacman-chomp 0.6s steps(5) infinite;
+}
+
+@keyframes pacman-chomp {
+    50% { background-position: 0 24px;}
+    100% {background-position: 0 0;}
 }
 
 // this doesn't seem optimal, but i'll just use the same rotation classnames for every class that needs it
@@ -23,14 +37,6 @@ img {
     position: absolute;
     padding: 0;
     margin: 0;
+    z-index: 1;
 
-    // using TileSize === 12
-    height: 12px; 
-    width: 12px;
-}
-
-// i'll try and implement the pacman animations in this sheet
-
-@keyframes pacman-animation {
-    0% { }
 }
