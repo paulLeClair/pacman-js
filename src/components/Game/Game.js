@@ -217,7 +217,7 @@ const Game = ({ gameShouldRun }) => {
             pixelPos: newPos,
             currentSpeed: newSpeed,
             orientation: newOrientation,
-            nextOrientation: newOrientation, // not sure how i should update this yet
+            nextOrientation: newOrientation,
         });
     }
 
