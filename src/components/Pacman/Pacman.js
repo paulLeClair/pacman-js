@@ -5,33 +5,23 @@ import Tile, { TileSize } from '../Tile/Tile';
 
 import spriteSheetPath from '../../assets/pacman-sprite-sheet.png';
 
+import './Pacman.scss'
+
 // i guess i'll try implementing the player-controlled Pacman component here!
 
 // maybe i'll hardcode a speed value in pixels...?
-export const PlayerSpeed = 5; // try 5 pixels maybe? will need to tweak it 
+export const PlayerSpeed = 1;
 
-const initialX = 26;
-const initialY = 13;
  
-const Pacman = ({ mapSpecification }) => { 
-    
-    // spatial position stuff?
-    const { gridPos, setGridPos } = useState({x: initialX, y: initialY});
-    const { pixelPos, setPixelPos } = useState({ x: initialX * TileSize, y: initialY * TileSize });
-    const { orientation, setOrientation } = useState(Orientation.RIGHT);
+const Pacman = ({ pixelPos, orientation, currentSpeed }) => { // i really gotta figure out how to synchronize everything... might need to move most of the logic out of pacman and into
+                                            // the game logic 
 
-    // movement info
-        // i'll have to mess around to figure out how to structure things so that the movement feels like the original pacman
-        // i think i can set it so that pacman moves in a different direction until you input a 
-    const { currentSpeed, setCurrentSpeed } = useState(0);
+    const [isChomping, setIsChomping] = useState(false);
 
-    // animation info?
-    const { isChomping, setIsChomping } = useState(true);
-
-
-    // i think i'll need to use a few effects here... i'm still new to hooks in general so hopefully this is an informative experience :)
-    
-    
+    useEffect(() => {
+        setIsChomping(currentSpeed > 0);
+    },
+    [currentSpeed]);
 
     let orientationStr = "";
     switch (orientation) {
@@ -54,19 +44,15 @@ const Pacman = ({ mapSpecification }) => {
 
     // build position styles
     const posStyles = {
-        top: (pixelPos !== undefined) ? pixelPos.x.toString() + "px" : "0px",
-        left: (pixelPos !== undefined) ? pixelPos.y.toString() + "px" : "0px",
+        top: pixelPos.x.toString() + "px",
+        left: pixelPos.y.toString() + "px",
     };
-
-    console.log(posStyles);
 
     // optionally use animation?
     let animationStr = (isChomping) ? "pacman-chomp" : "";
 
     return (
-        <div className="pacman" style={posStyles}>
-            <img className={orientationStr + " " + animationStr} src={spriteSheetPath} />
-        </div>
+        <div className={"pacman " + orientationStr + " " + animationStr} style={posStyles}/>
     );
 }
 

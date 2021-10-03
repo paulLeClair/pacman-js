@@ -1,9 +1,5 @@
 .board {
-    position: relative;
+    // position: relative;
     width: 336px; // for TileSize = 12px, this seems like an ugly way to do it but it allows flexbox to center it
     height: 432px; // also for TileSize = 12px;
-
-    border-style:ridge;
-    border-width: 0.5em;
-    border-color: lightslategray;
 }
