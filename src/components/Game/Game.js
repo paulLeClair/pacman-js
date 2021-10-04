@@ -11,6 +11,8 @@ import Tile, { TileSize, TileType } from '../Tile/Tile'
 import useInterval from '../../utils/useInterval'
 import useKeyPress from '../../utils/useKeyPress'
 
+import updatePlayer from './UpdatePlayer'
+
 const initialX = 26;
 const initialY = 13;
 
@@ -21,7 +23,7 @@ const BoardDims = {
 
 // not sure how much of a point there is to doing this, but for now it's kool
 const gameClassName = "game";
-const UpdateRateInMs = 15; // 60fps for now
+const UpdateRateInMs = 60; // 60fps for now
 
 // i'll maintain a fundamental definition of orientations maybe
 export const Orientation = {
@@ -100,130 +102,14 @@ const Game = ({ gameShouldRun }) => {
     leftArrow && bufferLeftInput();
     upArrow && bufferUpInput();
 
-    const updatePlayer = () => {
-        // skip updates until everything exists?
-        if (playerState === null || mapSpecification === null) return;  
-
-
-        let newOrientation = Orientation.RIGHT;
-        let prevOrientation = playerState.orientation;
-        switch (playerState.nextOrientation) {
-            case (Orientation.RIGHT): {
-                // if (mapSpecification[playerState.gridPos.x][playerState.gridPos.y + 1] === TileType.OPEN) {
-                newOrientation = Orientation.RIGHT;
-                // }
-                break;
-            }
-            case (Orientation.DOWN): {
-                // if (mapSpecification[playerState.gridPos.x + 1][playerState.gridPos.y] === TileType.OPEN) {
-                newOrientation = Orientation.DOWN;
-                // }
-                break;
-            }
-            case (Orientation.LEFT): {
-                // if (mapSpecification[playerState.gridPos.x][playerState.gridPos.y - 1] === TileType.OPEN) {
-                newOrientation = Orientation.LEFT;
-                // }
-                break;
-            }
-            case (Orientation.UP): {
-                // if (mapSpecification[playerState.gridPos.x - 1][playerState.gridPos.y] === TileType.OPEN) {
-                newOrientation = Orientation.UP;
-                // }
-                break;
-            }
-            default:
-                // error!
-        };
-
-            // variable for containing updated pacman speed
-        let newSpeed = playerState.currentSpeed;
-        
-        // update the player's position
-        let newPos = playerState.pixelPos;
-        switch (playerState.orientation) {
-            case (Orientation.RIGHT): {
-                let rightNeighbor = mapSpecification[playerState.gridPos.x][playerState.gridPos.y + 1];
-                if (rightNeighbor === TileType.OPEN) {
-                    newPos.y += playerState.currentSpeed;
-                    if (newSpeed === 0) newSpeed = PlayerSpeed;
-                }
-                else {
-                    newSpeed = 0;
-                }
-                break;
-            }
-            case (Orientation.DOWN): {
-                let belowNeighbor = mapSpecification[playerState.gridPos.x + 1][playerState.gridPos.y];
-                if (belowNeighbor === TileType.OPEN) {
-                    newPos.x += playerState.currentSpeed;
-                    if (newSpeed === 0) newSpeed = PlayerSpeed;
-                }
-                else {
-                    newSpeed = 0;
-                }
-                
-                break;
-            }
-            case (Orientation.LEFT): {
-                let leftNeighbor = mapSpecification[playerState.gridPos.x][playerState.gridPos.y - 1];
-                if (leftNeighbor === TileType.OPEN) {
-                    newPos.y -= playerState.currentSpeed;
-                    if (newSpeed === 0) newSpeed = PlayerSpeed;
-                }
-                else {
-                    newSpeed = 0;
-                }
-                break;
-            }
-            case (Orientation.UP): {
-                let aboveNeighbor = mapSpecification[playerState.gridPos.x - 1][playerState.gridPos.y];
-                if (aboveNeighbor === TileType.OPEN) {
-                    newPos.x -= playerState.currentSpeed;
-                    if (newSpeed === 0) newSpeed = PlayerSpeed;
-                }
-                else {
-                    newSpeed = 0;
-                }
-                break;
-            }
-        }
-        
-        // determine grid position of newpos:
-        let newGridPos = {
-            x: Math.floor(((newPos.x - TileSize/2) / TileSize) + 0.5),
-            y: Math.floor(((newPos.y - TileSize/2) / TileSize) + 0.5),
-        };
-        console.log(playerState.pixelPos, newPos);
-
-        let newGridPosTileType = mapSpecification[newGridPos.x][newGridPos.y];
-        switch (newGridPosTileType) {
-            case (TileType.OPEN): {
-                
-                break;
-            }
-            default: {
-                // anything other than open means we can't move into it!
-                newGridPos = playerState.gridPos;
-                newPos = { x: playerState.gridPos.x * TileSize, y: playerState.gridPos.y * TileSize };
-                newSpeed = 0;
-                break;
-            }
-        }
-
-        // commit state changes
-        setPlayerState({
-            gridPos: newGridPos,
-            pixelPos: newPos,
-            currentSpeed: newSpeed,
-            orientation: newOrientation,
-            nextOrientation: newOrientation, // not sure how i should update this yet
-        });
-    }
-
     // update
     const updateGame = () => {
-        updatePlayer();
+        if (playerState === null || mapSpecification === null || gameState === null) return;
+
+        // update state
+        const updatedPlayerState = updatePlayer(mapSpecification, playerState);
+        console.log("state to be committed:", updatedPlayerState);
+        setPlayerState(updatedPlayerState);
     };
 
     useInterval(updateGame, UpdateRateInMs);
@@ -252,6 +138,8 @@ const Game = ({ gameShouldRun }) => {
             </div>
         );
     }
+
+    if (gameState === null || playerState === null) return null;
 
     switch (gameState) {
         case PossibleGameStates.INTRO: return renderIntro();
