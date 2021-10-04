@@ -146,9 +146,6 @@ const Game = ({ gameShouldRun }) => {
         case PossibleGameStates.GAMEOVER: return renderGameOver();
     }
 
-    // for now, any other result should just return an empty component i guess... shouldn't happen if the 
-    // game is working properly
-        // i'm not sure what the best practice is for this kind of thing... should i just return null?
     return (
         <div className="game">
             <p>Error!</p>
