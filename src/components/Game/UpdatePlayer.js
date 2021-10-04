@@ -224,8 +224,7 @@ const updatePlayer = (mapSpecification, { gridPos, pixelPos, orientation, curren
     else if (pastMidpoint(newPos, midpoint, currentPlayerState.orientation)) {
         console.log('past midpoint');
         // in this case, we must be heading into an open tile, so we just commit the change
-        if (currentSpeed > 0) updatedPlayerState.pixelPos = newPos;
-        else updatedPlayerState.pixelPos = newPos;
+        updatedPlayerState.pixelPos = newPos;
     }
     else {
         // something went wrong!
