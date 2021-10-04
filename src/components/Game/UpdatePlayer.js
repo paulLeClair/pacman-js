@@ -39,7 +39,7 @@ function movePlayer(pixelPos, orientation, currentSpeed) {
 }
 
 function beforeMidpoint(pixelPos, midpointPos, orientation) {
-    console.log('beforemidpoint:', pixelPos, midpointPos, (pixelPos.y + TileSize/2 > midpointPos.y));
+    // console.log('beforemidpoint:', pixelPos, midpointPos, (pixelPos.y + TileSize/2 > midpointPos.y));
     switch (orientation) {
         case (Orientation.RIGHT):
             return (pixelPos.y < midpointPos.y /*&& pixelPos.x === midpointPos.x*/);
@@ -69,7 +69,7 @@ function atMidpoint(pixelPos, midpointPos, orientation) {
 }
 
 function pastMidpoint(pixelPos, midpointPos, orientation) {
-    console.log('pastmidpoint:', pixelPos, midpointPos, orientation, (pixelPos.y - TileSize/2 < midpointPos.y));
+    // console.log('pastmidpoint:', pixelPos, midpointPos, orientation, (pixelPos.y - TileSize/2 < midpointPos.y));
     switch (orientation) {
         case (Orientation.RIGHT): 
             return (pixelPos.y > midpointPos.y /*&& pixelPos.x === midpointPos.x*/);
@@ -120,7 +120,7 @@ const updatePlayer = (mapSpecification, { gridPos, pixelPos, orientation, curren
 
     // increment current position and determine where we are relative to the midpoint of the tile
     let newPos = movePlayer(pixelPos, orientation, currentSpeed);
-    console.log("prev pos:", pixelPos, "newpos:", newPos)
+    // console.log("prev pos:", pixelPos, "newpos:", newPos)
     
     // store new grid position
     let newGridPos = {
@@ -131,19 +131,19 @@ const updatePlayer = (mapSpecification, { gridPos, pixelPos, orientation, curren
     let midpoint = computeTileMidpoint(newGridPos);
 
     // let newOrientation = Orientation.RIGHT; 
-    console.log(newGridPos, TileSize, newPos, midpoint);
+    // console.log(newGridPos, TileSize, newPos, midpoint);
 
     if (beforeMidpoint(newPos, midpoint, currentPlayerState.orientation)) {
-        console.log('before midpoint');
+        // console.log('before midpoint');
         // in this case, we commit the change, clamping it to not go past the midpoint
         updatedPlayerState.pixelPos = clampToMidpoint(newPos, midpoint, currentPlayerState.orientation);
 
     } 
     else if (atMidpoint(newPos, midpoint, currentPlayerState.orientation)) {
-        console.log('at midpoint');
+        // console.log('at midpoint');
         // in this case, we check the buffered input and change the orientation if needed
         if (currentPlayerState.orientation !== currentPlayerState.nextOrientation) {
-            console.log('orient != next');
+            // console.log('orient != next');
             switch (currentPlayerState.nextOrientation) {
                 case (Orientation.RIGHT): {
                     let rightNeighbor = mapSpecification[newGridPos.x][newGridPos.y + 1];
@@ -155,7 +155,7 @@ const updatePlayer = (mapSpecification, { gridPos, pixelPos, orientation, curren
                 }
                 case (Orientation.DOWN): {
                     let downNeighbor = mapSpecification[newGridPos.x + 1][newGridPos.y];
-                    console.log('downneighbor:', downNeighbor)
+                    // console.log('downneighbor:', downNeighbor)
                     if (downNeighbor === TileType.OPEN) {
                         updatedPlayerState.orientation = Orientation.DOWN;
                         updatedPlayerState.currentSpeed = PlayerSpeed;
@@ -181,11 +181,11 @@ const updatePlayer = (mapSpecification, { gridPos, pixelPos, orientation, curren
             }
         }
         else {
-            console.log('orient == nextorient', currentPlayerState.orientation, currentPlayerState.nextOrientation);
+            // console.log('orient == nextorient', currentPlayerState.orientation, currentPlayerState.nextOrientation);
             switch (currentPlayerState.orientation) {
                 case (Orientation.RIGHT): {
                     let rightNeighbor = mapSpecification[newGridPos.x][newGridPos.y + 1];
-                    console.log('rightneighbor: ', rightNeighbor);
+                    // console.log('rightneighbor: ', rightNeighbor);
                     if (rightNeighbor !== TileType.OPEN) {
                         updatedPlayerState.currentSpeed = 0;
                         updatedPlayerState.pixelPos = pixelPos;
@@ -195,7 +195,7 @@ const updatePlayer = (mapSpecification, { gridPos, pixelPos, orientation, curren
                 }
                 case (Orientation.DOWN): {
                     let downNeighbor = mapSpecification[newGridPos.x + 1][newGridPos.y];
-                    console.log('downneighbor:', downNeighbor)
+                    // console.log('downneighbor:', downNeighbor)
                     if (downNeighbor !== TileType.OPEN) {
                         updatedPlayerState.currentSpeed = 0;
                         updatedPlayerState.pixelPos = pixelPos;
@@ -205,7 +205,7 @@ const updatePlayer = (mapSpecification, { gridPos, pixelPos, orientation, curren
                 }
                 case (Orientation.LEFT): {
                     let leftNeighbor = mapSpecification[newGridPos.x][newGridPos.y - 1];
-                    console.log('leftneighbor:', leftNeighbor);
+                    // console.log('leftneighbor:', leftNeighbor);
                     if (leftNeighbor !== TileType.OPEN) {
                         updatedPlayerState.currentSpeed = 0;
                         updatedPlayerState.pixelPos = pixelPos;
@@ -215,7 +215,7 @@ const updatePlayer = (mapSpecification, { gridPos, pixelPos, orientation, curren
                 }
                 case (Orientation.UP): {
                     let upNeighbor = mapSpecification[newGridPos.x - 1][newGridPos.y];
-                    console.log('upneighbor:', upNeighbor);
+                    // console.log('upneighbor:', upNeighbor);
                     if (upNeighbor !== TileType.OPEN) {
                         updatedPlayerState.currentSpeed = 0;
                         updatedPlayerState.pixelPos = pixelPos;
@@ -227,7 +227,7 @@ const updatePlayer = (mapSpecification, { gridPos, pixelPos, orientation, curren
         }
     }
     else if (pastMidpoint(newPos, midpoint, currentPlayerState.orientation)) {
-        console.log('past midpoint');
+        // console.log('past midpoint');
         // in this case, we must be heading into an open tile, so we just commit the change
         updatedPlayerState.pixelPos = newPos;
     }
@@ -236,7 +236,7 @@ const updatePlayer = (mapSpecification, { gridPos, pixelPos, orientation, curren
         console.log("error!");
     }
     
-    console.log(updatedPlayerState);
+    // console.log(updatedPlayerState);
     return updatedPlayerState;
 }
 
