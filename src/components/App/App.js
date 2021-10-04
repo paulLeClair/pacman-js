@@ -7,7 +7,7 @@ function App() {
     <div className="App">
       <TitleBar />
       <Game />
-      <a href="http://github.com/paulLeClair/pacman-js">source code</a>
+      <a href="http://github.com/paulLeClair/pacman-js">github</a>
     </div>
   );
 }

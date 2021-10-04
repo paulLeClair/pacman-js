@@ -7,8 +7,8 @@ function computeTileMidpoint(gridPos) {
     // compute midpoint of current tile
     return {
         // what if i don't add the tilesize/2 term, to offset pacman a bit...
-        x: gridPos.x * TileSize + TileSize/2, 
-        y: gridPos.y * TileSize + TileSize/2,
+        x: gridPos.x * TileSize,
+        y: gridPos.y * TileSize,
         // x: gridPos.x * TileSize, 
         // y: gridPos.y * TileSize,
     };
@@ -39,16 +39,16 @@ function movePlayer(pixelPos, orientation, currentSpeed) {
 }
 
 function beforeMidpoint(pixelPos, midpointPos, orientation) {
-    console.log('beforemidpoint:', pixelPos, midpointPos, orientation);
+    console.log('beforemidpoint:', pixelPos, midpointPos, (pixelPos.y + TileSize/2 > midpointPos.y));
     switch (orientation) {
         case (Orientation.RIGHT):
-            return (pixelPos.y + TileSize/2 < midpointPos.y /*&& pixelPos.x === midpointPos.x*/);
+            return (pixelPos.y < midpointPos.y /*&& pixelPos.x === midpointPos.x*/);
         case (Orientation.DOWN): 
-            return (pixelPos.x + TileSize/2 > midpointPos.x /*&& pixelPos.y === midpointPos.y*/);
+            return (pixelPos.x < midpointPos.x /*&& pixelPos.y === midpointPos.y*/);
         case (Orientation.LEFT): 
-            return (pixelPos.y - TileSize/2 > midpointPos.y /*&& pixelPos.x === midpointPos.x*/);
+            return (pixelPos.y > midpointPos.y/*&& pixelPos.x === midpointPos.x*/);
         case (Orientation.UP): 
-            return (pixelPos.x - TileSize/2 < midpointPos.x /*&& pixelPos.y === midpointPos.y*/);
+            return (pixelPos.x > midpointPos.x /*&& pixelPos.y === midpointPos.y*/);
         default:
             // error!(?)
             return false;
@@ -58,27 +58,27 @@ function beforeMidpoint(pixelPos, midpointPos, orientation) {
 function atMidpoint(pixelPos, midpointPos, orientation) {
     switch (orientation) {
         case (Orientation.RIGHT):
-            return (pixelPos.y + TileSize/2 === midpointPos.y);
+            return (pixelPos.y === midpointPos.y);
         case (Orientation.LEFT): 
-            return (pixelPos.y - TileSize/2 === midpointPos.y);
+            return (pixelPos.y === midpointPos.y);
         case (Orientation.DOWN):
-            return (pixelPos.x + TileSize/2 === midpointPos.x);
+            return (pixelPos.x === midpointPos.x);
         case (Orientation.UP):
-            return (pixelPos.x - TileSize/2 === midpointPos.x);
+            return (pixelPos.x === midpointPos.x);
     }
 }
 
 function pastMidpoint(pixelPos, midpointPos, orientation) {
-    console.log('pastmidpoint:', pixelPos, midpointPos, orientation);
+    console.log('pastmidpoint:', pixelPos, midpointPos, orientation, (pixelPos.y - TileSize/2 < midpointPos.y));
     switch (orientation) {
         case (Orientation.RIGHT): 
-            return (pixelPos.y + TileSize/2 > midpointPos.y /*&& pixelPos.x === midpointPos.x*/);
+            return (pixelPos.y > midpointPos.y /*&& pixelPos.x === midpointPos.x*/);
         case (Orientation.DOWN): 
-            return (pixelPos.x + TileSize/2 < midpointPos.x /*&& pixelPos.y === midpointPos.y*/);
+            return (pixelPos.x > midpointPos.x /*&& pixelPos.y === midpointPos.y*/);
         case (Orientation.LEFT): 
-            return (pixelPos.y - TileSize/2 < midpointPos.y /*&& pixelPos.x === midpointPos.x*/);
+            return (pixelPos.y < midpointPos.y /*&& pixelPos.x === midpointPos.x*/);
         case (Orientation.UP): 
-            return (pixelPos.x - TileSize/2 > midpointPos.x /*&& pixelPos.y === midpointPos.y*/);
+            return (pixelPos.x < midpointPos.x /*&& pixelPos.y === midpointPos.y*/);
     }
 }
 
@@ -149,13 +149,16 @@ const updatePlayer = (mapSpecification, { gridPos, pixelPos, orientation, curren
                     let rightNeighbor = mapSpecification[newGridPos.x][newGridPos.y + 1];
                     if (rightNeighbor === TileType.OPEN) {
                         updatedPlayerState.orientation = Orientation.RIGHT;
+                        updatedPlayerState.currentSpeed = PlayerSpeed;
                     }
                     break;
                 }
                 case (Orientation.DOWN): {
                     let downNeighbor = mapSpecification[newGridPos.x + 1][newGridPos.y];
+                    console.log('downneighbor:', downNeighbor)
                     if (downNeighbor === TileType.OPEN) {
                         updatedPlayerState.orientation = Orientation.DOWN;
+                        updatedPlayerState.currentSpeed = PlayerSpeed;
                     }
                     break;
                 }
@@ -163,6 +166,7 @@ const updatePlayer = (mapSpecification, { gridPos, pixelPos, orientation, curren
                     let leftNeighbor = mapSpecification[newGridPos.x][newGridPos.y - 1];
                     if (leftNeighbor === TileType.OPEN) {
                         updatedPlayerState.orientation = Orientation.LEFT;
+                        updatedPlayerState.currentSpeed = PlayerSpeed;
                     }
                     break;
                 }
@@ -170,6 +174,7 @@ const updatePlayer = (mapSpecification, { gridPos, pixelPos, orientation, curren
                     let upNeighbor = mapSpecification[newGridPos.x - 1][newGridPos.y];
                     if (upNeighbor === TileType.OPEN) {
                         updatedPlayerState.orientation = Orientation.UP;
+                        updatedPlayerState.currentSpeed = PlayerSpeed;
                     }
                     break;
                 }
@@ -228,6 +233,7 @@ const updatePlayer = (mapSpecification, { gridPos, pixelPos, orientation, curren
     }
     else {
         // something went wrong!
+        console.log("error!");
     }
     
     console.log(updatedPlayerState);

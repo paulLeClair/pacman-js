@@ -23,7 +23,7 @@ const BoardDims = {
 
 // not sure how much of a point there is to doing this, but for now it's kool
 const gameClassName = "game";
-const UpdateRateInMs = 60; // 60fps for now
+const UpdateRateInMs = 35; // 60fps for now
 
 // i'll maintain a fundamental definition of orientations maybe
 export const Orientation = {
