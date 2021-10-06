@@ -1,12 +1,13 @@
 # PacmanJS 
 
-This is a small project intended to help me practice with React as well as JavaScript in general. I'm hoping to create a full clone of the original 1980 arcade classic by Namco, including a faithful replication of the ghost AI. 
+This is a small project intended to help me practice with React as well as JavaScript in general. I'm hoping to create a full clone of the original 1980 arcade classic by Namco, including a faithful replication of the ghost AI. I bootstrapped the project using the wonderful tool called [`create-react-app`](https://github.com/facebook/create-react-app).
 
 Currently, I only have the initial implementations of the board and player-controlled Pacman in place. I hope to add items and scores soon, and then I can move on to implementing the AI models for the four ghosts. I'm also aiming to provide the same progression in difficulty as the game goes on that the original game provides, as well as recreating the iconic sound design.
 
 Being my first involved React project, this is pretty rough around the edges, and I apologize if any of my code makes your eyes bleed.
 
 Thanks for stopping by :)
+
 
 ## Available Scripts
 
