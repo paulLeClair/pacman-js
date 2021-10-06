@@ -7,7 +7,7 @@ import spriteSheetPath from '../../assets/pacman-sprite-sheet.png';
 
 import './Pacman.scss'
 
-export const PlayerSpeed = 1;
+export const PlayerSpeed = 2;
 
  
 const Pacman = ({ pixelPos, orientation, currentSpeed }) => {
