@@ -1,0 +1,41 @@
+img {
+    display: block;
+}
+
+.pacman-chomp {
+    animation: pacmanchomp 0.18s steps(3) infinite;
+}
+
+@keyframes pacmanchomp {
+    100% {background-position-x: -36px;}
+}
+
+// this doesn't seem ideal, but i'll just use the same rotation classnames for every component that needs it
+.orientation-right {
+    transform: rotate(0deg);
+}
+
+.orientation-down {
+    transform: rotate(90deg);
+}
+
+.orientation-left {
+    transform: rotate(180deg);
+}
+
+.orientation-up {
+    transform: rotate(270deg);
+}
+
+.pacman {
+    position: absolute;
+    padding: 0;
+    margin: 0;
+    z-index: 1;
+
+    // using TileSize === 12
+    height: 12px; 
+    width: 12px;
+
+    background: url("../../assets/pacman-sprite-sheet.png");
+}

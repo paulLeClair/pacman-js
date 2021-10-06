@@ -1,6 +1,12 @@
 # PacmanJS 
-by Paul LeClair :)
 
+This is a small project intended to help me practice with React as well as JavaScript in general. I'm hoping to create a full clone of the original 1980 arcade classic by Namco, including a faithful replication of the ghost AI. I bootstrapped the project using the wonderful tool called [`create-react-app`](https://github.com/facebook/create-react-app).
+
+Currently, I only have the initial implementations of the board and player-controlled Pacman in place. I hope to add items and scores soon, and then I can move on to implementing the AI models for the four ghosts. I'm also aiming to provide the same progression in difficulty as the game goes on that the original game provides, as well as recreating the iconic sound design.
+
+Being my first involved React project, this is pretty rough around the edges, and I apologize if any of my code makes your eyes bleed.
+
+Thanks for stopping by :)
 
 
 ## Available Scripts
@@ -30,12 +36,9 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+## Credits
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- All credit goes to Namco for the game design! I'm trying to use their original game as a specification for my own project here
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- Pacman sprites come from a sheet I found on Google, ripped by `SUPASTARFOX`! Big thanks to them for providing these great sprites :)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
