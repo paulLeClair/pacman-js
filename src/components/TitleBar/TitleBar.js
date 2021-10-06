@@ -1,6 +1,8 @@
 import React from 'react'
 import './TitleBar.scss'
 
+// placeholder titlebar, 
+
 const TitleBar = ({ }) => {
 
     return (

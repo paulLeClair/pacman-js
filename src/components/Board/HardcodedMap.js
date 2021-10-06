@@ -3,7 +3,7 @@ import { TileType } from '../Tile/Tile'
 
 // here's an attempt at hardcoding the original pacman map! 
     //hopefully it works :)
-// eventually i'd like to have the map be read from a file, although for this implementation of the original pacman 
+// eventually i'd like to have the map be read from a file, but this works for now
 const HardcodedMap = [
     [TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP],
     [TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP, TileType.OFFMAP],

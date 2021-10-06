@@ -7,7 +7,7 @@ const useKeyPress = (targetKey) => {
     const [keyPressed, setKeyPressed] = useState(false);
 
     if (keyPressed) setKeyPressed(false); // immediately disable, so we only read 1 input per press 
-        // should be fine for simple directional controls, i hope, but i'll have to test it first
+        // should be fine for simple directional controls, i hope
 
     const handleKeyDown = ({ key }) => {
         if (key === targetKey) {

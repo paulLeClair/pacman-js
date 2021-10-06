@@ -3,7 +3,7 @@ import Tile from '../Tile/Tile';
 import { TileSize, TileType } from '../Tile/Tile'
 import { Orientation } from './Game';
 
-function computeTileMidpoint(gridPos) {
+const computeTileMidpoint = (gridPos) => {
     // compute midpoint of current tile
     return {
         // what if i don't add the tilesize/2 term, to offset pacman ...
@@ -13,7 +13,7 @@ function computeTileMidpoint(gridPos) {
     };
 }
 
-function movePlayer(pixelPos, orientation, currentSpeed) {
+const movePlayer = (pixelPos, orientation, currentSpeed) => {
     let newPos = pixelPos;
     switch (orientation) {
         case (Orientation.RIGHT): {
@@ -37,7 +37,7 @@ function movePlayer(pixelPos, orientation, currentSpeed) {
     return newPos;
 }
 
-function beforeMidpoint(pixelPos, midpointPos, orientation) {
+const beforeMidpoint = (pixelPos, midpointPos, orientation) => {
     switch (orientation) {
         case (Orientation.RIGHT):
             return (pixelPos.y < midpointPos.y);
@@ -53,7 +53,7 @@ function beforeMidpoint(pixelPos, midpointPos, orientation) {
     }
 }
 
-function atMidpoint(pixelPos, midpointPos, orientation) {
+const atMidpoint = (pixelPos, midpointPos, orientation) => {
     switch (orientation) {
         case (Orientation.RIGHT):
             return (pixelPos.y === midpointPos.y);
@@ -66,7 +66,7 @@ function atMidpoint(pixelPos, midpointPos, orientation) {
     }
 }
 
-function pastMidpoint(pixelPos, midpointPos, orientation) {
+const pastMidpoint = (pixelPos, midpointPos, orientation) => {
     switch (orientation) {
         case (Orientation.RIGHT): 
             return (pixelPos.y > midpointPos.y);
@@ -79,7 +79,7 @@ function pastMidpoint(pixelPos, midpointPos, orientation) {
     }
 }
 
-function clampToMidpoint(newPos, midpointPos, orientation) {
+const clampToMidpoint = (newPos, midpointPos, orientation) => {
     switch (orientation) {
         case (Orientation.RIGHT): 
             return {
@@ -223,7 +223,6 @@ const updatePlayer = (mapSpecification, { gridPos, pixelPos, orientation, curren
         console.log("error!");
     }
     
-    // console.log(updatedPlayerState);
     return updatedPlayerState;
 }
 

@@ -8,7 +8,7 @@ const Board = ({ initialMap }) => {
     const [mapSpecification] = useState(initialMap);
     const [tileGrid, setTileGrid] = useState([]);
 
-    // maybe i should actually build the map using an effect that fires only after the first render
+    // build the map:
     useEffect(
         () => {
             // compute orientations here maybe?
@@ -26,8 +26,8 @@ const Board = ({ initialMap }) => {
                 })
             }))
         }, 
-        [mapSpecification] // this shouldn't change anyway
-    ) // since the map should be static for now, hopefully it works to set everything up like this 
+        [mapSpecification] // this shouldn't change at any point
+    )
 
     return (
         <div className="board">

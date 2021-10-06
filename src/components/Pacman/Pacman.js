@@ -1,14 +1,10 @@
 import React, { useState, useEffect } from 'react';
 
 import { Orientation } from '../Game/Game';
-import Tile, { TileSize } from '../Tile/Tile';
-
-import spriteSheetPath from '../../assets/pacman-sprite-sheet.png';
 
 import './Pacman.scss'
 
 export const PlayerSpeed = 2;
-
  
 const Pacman = ({ pixelPos, orientation, currentSpeed }) => {
 

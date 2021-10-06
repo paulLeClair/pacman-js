@@ -1,11 +1,10 @@
 import { Orientation } from '../Game/Game'
 import Tile, { TileType } from '../Tile/Tile'
 
-const clamp = (number, min, max) => {
-    return Math.max(min, Math.min(number, max));
-}
+// these functions are used to determine the proper orientations of different board tiles
+    // i've designed this around the original pacman map, so there's no guarantees it should work for other map specifications,
+    // but if they follow the same rules of construction as the original map, it should come close
 
-// now we handle the wall cases (where the orientation matters most)
 const isCorner = (tileType) => (tileType === TileType.INNER_CORNER
                                 || tileType === TileType.BOUNDARY_INCORNER
                                 || tileType === TileType.BOUNDARY_OUTCORNER
@@ -116,7 +115,7 @@ const isUpperLeftCorner = (tileType, mapSpecification, x, y) => {
                     }
                 }
 
-                // actually, what if we just check whether the above or rightbelow tiles are open?
+                // check whether the above or rightbelow tiles are open
                 if (x - 1 > 0) {
                     let aboveNeighbor = mapSpecification[x - 1][y];
                     let rightBelowNeighbor = mapSpecification[x + 1][y + 1];
@@ -153,9 +152,6 @@ const isUpperRightCorner = (tileType, mapSpecification, x, y) => {
             let leftNeighbor = mapSpecification[x][y - 1];
 
             if (leftNeighbor !== TileType.OPEN && belowNeighbor !== TileType.OPEN) {
-
-                // i'll try modelling this after the upperleft corner stuff
-
                 // handle cases where we have adjacent corners
                 if (leftNeighbor === TileType.INNER_CORNER) {
                     // similarly to upper left, in this case we require that the tile directly above is open
@@ -178,7 +174,7 @@ const isUpperRightCorner = (tileType, mapSpecification, x, y) => {
                     }
                 }
 
-                // maybe here we check for openness too..
+                // check if above and/or belowleft neighbor are open
                 if (x - 1 > 0) {
                     let belowLeftNeighbor = mapSpecification[x + 1][y - 1];
                     let aboveNeighbor = mapSpecification[x - 1][y];
@@ -192,9 +188,11 @@ const isUpperRightCorner = (tileType, mapSpecification, x, y) => {
         }
         case TileType.BOUNDARY_INCORNER:
         case TileType.GB_CORNER: {
+            // for inner boundary corners and the ghost box, we can just check that the belowleft neighbor is OFFMAP
             return (mapSpecification[x + 1][y - 1] === TileType.OFFMAP);
         }
-        default: // boundary_outcorner
+        default: 
+            // the default case is handled as an outer boundary corner, and we check whether the belowleft neighbor is OPEN
             return (mapSpecification[x + 1][y - 1] === TileType.OPEN);   
     }
 }

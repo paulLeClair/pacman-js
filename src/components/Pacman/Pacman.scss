@@ -10,7 +10,7 @@ img {
     100% {background-position-x: -36px;}
 }
 
-// this doesn't seem optimal, but i'll just use the same rotation classnames for every class that needs it
+// this doesn't seem ideal, but i'll just use the same rotation classnames for every component that needs it
 .orientation-right {
     transform: rotate(0deg);
 }
@@ -38,7 +38,4 @@ img {
     width: 12px;
 
     background: url("../../assets/pacman-sprite-sheet.png");
-
-
-
 }

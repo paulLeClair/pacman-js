@@ -5,7 +5,7 @@ import Board from '../Board/Board'
 import HardcodedMap from '../Board/HardcodedMap'
 
 import Pacman, { PlayerSpeed } from '../Pacman/Pacman'
-import Tile, { TileSize, TileType } from '../Tile/Tile'
+import { TileSize } from '../Tile/Tile'
 
 // custom hooks
 import useInterval from '../../utils/useInterval'
@@ -13,13 +13,9 @@ import useKeyPress from '../../utils/useKeyPress'
 
 import updatePlayer from './UpdatePlayer'
 
+// i'll hardcode the starting tile for pacman here
 const initialX = 26;
 const initialY = 13;
-
-const BoardDims = {
-    WIDTH: 28,
-    HEIGHT: 36
-};
 
 // not sure how much of a point there is to doing this, but for now it's kool
 const gameClassName = "game";
@@ -59,15 +55,16 @@ const Game = ({ gameShouldRun }) => {
     });
 
     /* ITEMS STATE */
-        // todo
+    const [ itemState, setItemState ] = useState({
+        pellets: [],
+        powerPellets: [],
+
+    });
 
     /* GHOSTS STATE */
         // todo
 
-    // i'll separate each game state into a separate function maybe...? not sure yet how best to organize it
-        // this might get too unwieldy, but i'm hoping I can just maintain most of the state here and 
-        // the subcomponents can do a lot of the heavy lifting...
-    // gotta do some thinking before i continue
+    // functions to modify the player state, which will be called when the app detects an arrow-key input
     const bufferRightInput = () => {
         let newState = playerState;
         newState.nextOrientation = Orientation.RIGHT;
@@ -111,8 +108,12 @@ const Game = ({ gameShouldRun }) => {
         setPlayerState(updatedPlayerState);
     };
 
+    // update the entire game using a custom interval hook, which provides a janky way to run the game at a "fixed rate"
     useInterval(updateGame, UpdateRateInMs);
     
+    // TODO: main menu screen
+
+    // this should eventually render the intro cutscene and then transition the gamestate into GAMEPLAY
     const renderIntro = () => {
         return (
             <div className={gameClassName}>
@@ -121,6 +122,7 @@ const Game = ({ gameShouldRun }) => {
         );
     }
 
+    // this should be the gameplay mode, where you're actually controlling pacman etc
     const renderGameplay = () => {
         return (
             <div className={gameClassName}> 
@@ -130,6 +132,8 @@ const Game = ({ gameShouldRun }) => {
         );
     }
 
+    // this should play a small pac-man dying animation, and then either go to game-over/main menu or restart gameplay
+    // depending on the current game state (number of player lives, current level, etc)
     const renderGameOver = () => {
         return (
             <div className={gameClassName}>

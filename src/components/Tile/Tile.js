@@ -1,6 +1,10 @@
 import React from 'react'
+
 import './Tile.scss'
+
 import { Orientation } from '../Game/Game'
+
+// image imports
 import { open, boundaryEdge, boundaryInCorner, boundaryOutCorner, boundaryBumpLeft, boundaryBumpRight, innerEdge, innerCorner, ghostBoxCorner, ghostBoxDoor } from './TileImageImports'
 
 export const TileType = {
