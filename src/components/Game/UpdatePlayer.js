@@ -169,11 +169,9 @@ const updatePlayer = (mapSpecification, { gridPos, pixelPos, orientation, curren
                     break;
                 }
             }
-
-            // pacman can go through walls if you buffer inputs a certain way... need to prevent that 
             
         }
-        // what if we guarantee this switch statement fires?
+        
         switch (currentPlayerState.orientation) {
             case (Orientation.RIGHT): {
                 let rightNeighbor = mapSpecification[newGridPos.x][newGridPos.y + 1];
