@@ -112,6 +112,8 @@ const updatePlayer = (mapSpecification, { gridPos, pixelPos, orientation, curren
         currentSpeed,
         nextOrientation
     };
+
+    // initialize updated state object
     let updatedPlayerState = currentPlayerState;
 
     // increment current position and determine where we are relative to the midpoint of the tile
@@ -167,47 +169,50 @@ const updatePlayer = (mapSpecification, { gridPos, pixelPos, orientation, curren
                     break;
                 }
             }
+
+            // pacman can go through walls if you buffer inputs a certain way... need to prevent that 
+            
         }
-        else {
-            switch (currentPlayerState.orientation) {
-                case (Orientation.RIGHT): {
-                    let rightNeighbor = mapSpecification[newGridPos.x][newGridPos.y + 1];
-                    if (rightNeighbor !== TileType.OPEN) {
-                        updatedPlayerState.currentSpeed = 0;
-                        updatedPlayerState.pixelPos = pixelPos;
-                        updatedPlayerState.gridPos = gridPos;
-                    }
-                    break;
+        // what if we guarantee this switch statement fires?
+        switch (currentPlayerState.orientation) {
+            case (Orientation.RIGHT): {
+                let rightNeighbor = mapSpecification[newGridPos.x][newGridPos.y + 1];
+                if (rightNeighbor !== TileType.OPEN) {
+                    updatedPlayerState.currentSpeed = 0;
+                    updatedPlayerState.pixelPos = pixelPos;
+                    updatedPlayerState.gridPos = gridPos;
                 }
-                case (Orientation.DOWN): {
-                    let downNeighbor = mapSpecification[newGridPos.x + 1][newGridPos.y];
-                    if (downNeighbor !== TileType.OPEN) {
-                        updatedPlayerState.currentSpeed = 0;
-                        updatedPlayerState.pixelPos = pixelPos;
-                        updatedPlayerState.gridPos = gridPos;
-                    }
-                    break;
+                break;
+            }
+            case (Orientation.DOWN): {
+                let downNeighbor = mapSpecification[newGridPos.x + 1][newGridPos.y];
+                if (downNeighbor !== TileType.OPEN) {
+                    updatedPlayerState.currentSpeed = 0;
+                    updatedPlayerState.pixelPos = pixelPos;
+                    updatedPlayerState.gridPos = gridPos;
                 }
-                case (Orientation.LEFT): {
-                    let leftNeighbor = mapSpecification[newGridPos.x][newGridPos.y - 1];
-                    if (leftNeighbor !== TileType.OPEN) {
-                        updatedPlayerState.currentSpeed = 0;
-                        updatedPlayerState.pixelPos = pixelPos;
-                        updatedPlayerState.gridPos = gridPos;
-                    }
-                    break;
+                break;
+            }
+            case (Orientation.LEFT): {
+                let leftNeighbor = mapSpecification[newGridPos.x][newGridPos.y - 1];
+                if (leftNeighbor !== TileType.OPEN) {
+                    updatedPlayerState.currentSpeed = 0;
+                    updatedPlayerState.pixelPos = pixelPos;
+                    updatedPlayerState.gridPos = gridPos;
                 }
-                case (Orientation.UP): {
-                    let upNeighbor = mapSpecification[newGridPos.x - 1][newGridPos.y];
-                    if (upNeighbor !== TileType.OPEN) {
-                        updatedPlayerState.currentSpeed = 0;
-                        updatedPlayerState.pixelPos = pixelPos;
-                        updatedPlayerState.gridPos = gridPos;
-                    }
-                    break;
+                break;
+            }
+            case (Orientation.UP): {
+                let upNeighbor = mapSpecification[newGridPos.x - 1][newGridPos.y];
+                if (upNeighbor !== TileType.OPEN) {
+                    updatedPlayerState.currentSpeed = 0;
+                    updatedPlayerState.pixelPos = pixelPos;
+                    updatedPlayerState.gridPos = gridPos;
                 }
+                break;
             }
         }
+        
     }
     else if (pastMidpoint(newPos, midpoint, currentPlayerState.orientation)) {
         // in this case, we must be heading into an open tile, so we just commit the change

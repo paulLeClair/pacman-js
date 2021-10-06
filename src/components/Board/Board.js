@@ -4,9 +4,6 @@ import Tile, { TileSize } from '../Tile/Tile'
 import { computeTileImageOrientations } from './BoardUtils.js'
 
 const Board = ({ initialMap }) => {
-    // i'm not entirely sure how to structure the board...
-    // maybe i'll try keeping it as minimal as possible and just render the tiles
-    
     // maybe the board can convert the initial map specification into an array of arrays of tiles, one for each element in the array
     const [mapSpecification] = useState(initialMap);
     const [tileGrid, setTileGrid] = useState([]);

@@ -75,7 +75,6 @@ const computeBoundaryBumpOrientation = (tileType, mapSpecification, x, y) => {
 }
 
 const isUpperLeftCorner = (tileType, mapSpecification, x, y) => {
-    // maybe i'll try some simple rules first...
     if (x + 1 >= mapSpecification.length) {
         return false;       
     }
@@ -91,10 +90,6 @@ const isUpperLeftCorner = (tileType, mapSpecification, x, y) => {
             let rightNeighbor = mapSpecification[x][y + 1];
             
             if (belowNeighbor !== TileType.OPEN && rightNeighbor !== TileType.OPEN) {
-                // this handles most cases, except for a couple internal corners
-
-                // i think i might be able to just add check(s) in here in each function and then it might work... god willing
-                
                 // handle case where right neighbor is an inner corner
                 if (rightNeighbor === TileType.INNER_CORNER) {
                     // in this case, we can only have an upper left corner if the tile directly above is open
@@ -314,9 +309,6 @@ export const computeTileImageOrientations = (mapSpecification) => {
     return mapSpecification.map((row, x) => 
         // here we look at each tile and determine the orientation it should have based on its neighbors in the grid
         row.map((tileType, y) => {
-            // i need to decide on an arbitrary "basis" type thing for rotation; i think the images will 
-            // each be oriented to the user's RIGHT by default, so we just determine which rotation to use;
-
             if (tileType === TileType.OFFMAP || tileType === TileType.OPEN) {
                 return Orientation.RIGHT; // don't care about these
             }
