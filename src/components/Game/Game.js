@@ -58,7 +58,13 @@ const Game = ({ gameShouldRun }) => {
     const [ itemState, setItemState ] = useState({
         pellets: [],
         powerPellets: [],
-
+        cherries: [],
+        strawberries: [],
+        oranges: [],
+        melons: [],
+        ships: [],
+        keys: [],
+        bells: [],
     });
 
     /* GHOSTS STATE */
@@ -103,9 +109,11 @@ const Game = ({ gameShouldRun }) => {
     const updateGame = () => {
         if (playerState === null || mapSpecification === null || gameState === null) return;
 
-        // update state
+        // update player
         const updatedPlayerState = updatePlayer(mapSpecification, playerState);
         setPlayerState(updatedPlayerState);
+
+        // check if the player has obtained any items 
     };
 
     // update the entire game using a custom interval hook, which provides a janky way to run the game at a "fixed rate"

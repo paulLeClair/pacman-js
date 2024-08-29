@@ -3,7 +3,7 @@ import './TitleBar.scss'
 
 // placeholder titlebar, 
 
-const TitleBar = ({ }) => {
+const TitleBar = () => {
 
     return (
         <div className="title-bar">
