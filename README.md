@@ -1,6 +1,6 @@
 # PacmanJS 
 
->note: this codebase is undergoing a giant overhaul in my private repo! I'm going to port & refactor the existing stuff to a new codebase that's using a slightly different stack and then open a PR to bring it over.
+>note: this codebase is undergoing a giant overhaul in my private repo! I'm going to port & refactor the existing stuff to a new codebase that's using a slightly different stack and then open a PR to bring it over. stay tuned 😄
 
 This is a small project intended to help me practice with React as well as JavaScript in general. I'm hoping to create a full clone of the original 1980 arcade classic by Namco, including a faithful replication of the ghost AI. I bootstrapped the project using the wonderful tool called [`create-react-app`](https://github.com/facebook/create-react-app).
 
